@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Convites</title>
+    <link rel="icon" href="data:,"> 
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="top-bar">
+        <h1>Invite<span class="neon-text">Gen</span></h1>
+        <div class="theme-switch">
+            <label for="styleMode">Tema:</label>
+            <select id="styleMode" name="styleMode">
+                <option value="dark">Dark Neon</option>
+                <option value="light">Light Minimal</option>
+            </select>
+        </div>
+    </header>
+
+    <main class="app-wrapper">
+        <section class="editor-panel">
+            <form id="inviteForm" novalidate>
+                <fieldset>
+                    <legend>Informações Base</legend>
+                    <div class="input-group">
+                        <label for="title">Título do Evento *</label>
+                        <input type="text" id="title" name="title" required placeholder="Ex: Lançamento do Produto X">
+                    </div>
+
+                    <div class="row">
+                        <div class="input-group">
+                            <label for="startDate">Início *</label>
+                            <input type="datetime-local" id="startDate" name="startDate" max="9999-12-31T23:59" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="endDate">Fim *</label>
+                            <input type="datetime-local" id="endDate" name="endDate" max="9999-12-31T23:59" required>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-group">
+                            <label for="type">Formato *</label>
+                            <select id="type" name="type" required>
+                                <option value="presencial">Presencial</option>
+                                <option value="online">Online</option>
+                            </select>
+                        </div>
+                        <div class="input-group" id="locationGroup">
+                            <label id="locationLabel" for="location">Local *</label>
+                            <input type="text" id="location" name="location" required placeholder="Endereço completo">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="description">Descrição</label>
+                        <textarea id="description" name="description" rows="4" placeholder="Descreva o evento, dress code, o que levar..."></textarea>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contato & Visual</legend>
+                    <div class="row">
+                        <div class="input-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required placeholder="contato@evento.com">
+                        </div>
+                        <div class="input-group">
+                            <label for="phone">WhatsApp</label>
+                            <input type="tel" id="phone" name="phone" placeholder="(00) 00000-0000">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="coverImage">Imagem de Capa (Opcional)</label>
+                        <input type="file" id="coverImage" name="coverImage" accept="image/png, image/jpeg, image/webp">
+                    </div>
+                </fieldset>
+
+                <button type="submit" id="downloadBtn" class="primary-btn">Baixar Convite</button>
+            </form>
+        </section>
+
+        <aside class="preview-panel">
+            <div class="preview-sticky">
+                <h2>Live Preview</h2>
+                <div id="inviteCard" class="invite-card">
+                    <img id="cardCover" class="card-cover" src="" alt="Capa" style="display: none;">
+                    <div class="card-content">
+                        <span id="cardType" class="badge">Presencial</span>
+                        <h3 id="cardTitle">Título do seu Evento</h3>
+                        <div class="card-meta">
+                            <div class="meta-item"><strong>📅 Data:</strong> <span><span id="cardStartDate">--/--/----</span> até <span id="cardEndDate">--/--/----</span></span></div>
+                            <div class="meta-item"><strong>📍 Local:</strong> <span id="cardLocation">Defina o local ou link</span></div>
+                        </div>
+                        <div class="card-description"><p id="cardDesc">A descrição do seu evento aparecerá aqui.</p></div>
+                    </div>
+                    <div class="card-footer">
+                        <p>✉️ <span id="cardEmail">email@exemplo.com</span> | 📱 <span id="cardPhone">(00) 00000-0000</span></p>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
