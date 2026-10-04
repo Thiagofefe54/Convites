@@ -63,6 +63,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    [startDateInput, endDateInput].forEach(input => input.addEventListener('input', () => endDateInput.setCustomValidity('')));
+
     // 5. Upload de Imagem de Capa Local
     const cardCover = document.getElementById('cardCover');
     document.getElementById('coverImage').addEventListener('change', function() {
@@ -81,6 +83,10 @@ document.addEventListener('DOMContentLoaded', () => {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
         
+        const start = new Date(startDateInput.value).getTime();
+        const end = new Date(endDateInput.value).getTime();
+        endDateInput.setCustomValidity(Number.isFinite(start) && Number.isFinite(end) && end < start
+            ? 'A data de fim deve ser igual ou posterior ao início.' : '');
         if (!form.checkValidity()) return form.reportValidity();
 
         const originalBtnText = downloadBtn.textContent;
